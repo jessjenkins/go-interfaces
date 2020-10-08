@@ -7,7 +7,7 @@ type Reader interface {
 }
 
 type Writer interface {
-	Write() string
+	Write()
 }
 
 type Doer struct {
@@ -15,11 +15,16 @@ type Doer struct {
 	Reader Reader
 }
 
-func NewDoer(r Reader, w Writer) Doer {
-	return Doer{
-		Writer: w,
-		Reader: r,
+func NewDoer(r,w interface{}) Doer {
+    doer := Doer{}
+    if v, ok := r.(Reader) ; ok {
+    	doer.Reader = v
 	}
+	if v, ok := w.(Writer) ; ok {
+		doer.Writer = v
+	}
+	fmt.Printf("Doer: %v",doer)
+    return doer
 }
 
 func (d Doer) Do() {
