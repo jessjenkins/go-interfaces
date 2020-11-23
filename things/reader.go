@@ -1,6 +1,9 @@
 package things
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/jessjenkins/go-interfaces/doer"
+)
 
 type Reader struct {}
 
@@ -10,4 +13,8 @@ func (r Reader) Init() {
 
 func (r Reader) Read() string {
 	return "read value"
+}
+
+func (r Reader) Another() doer.Reader {
+	return Reader{}
 }

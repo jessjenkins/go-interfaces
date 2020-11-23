@@ -19,7 +19,9 @@ func main()  {
 	reader.Init()
 	writer.Init()
 
-	doer := doer.NewDoer(reader, writer)  // I know this fails, I just want to think about it
+	var w doer.Reader = reader
+	
+	doer := doer.NewDoer(w, writer)  // I know this fails, I just want to think about it
 	doer.Do()
 }
 
